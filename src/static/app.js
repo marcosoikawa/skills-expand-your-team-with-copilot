@@ -526,8 +526,8 @@ document.addEventListener("DOMContentLoaded", () => {
               console.error('Failed to copy:', err);
               showMessage('Failed to copy link', 'error');
             });
-        } else {
-          // Fallback for older browsers
+        } else if (document.execCommand) {
+          // Fallback for older browsers that support execCommand
           const textArea = document.createElement('textarea');
           textArea.value = shareUrl;
           textArea.style.position = 'fixed';
@@ -542,6 +542,9 @@ document.addEventListener("DOMContentLoaded", () => {
             showMessage('Failed to copy link', 'error');
           }
           document.body.removeChild(textArea);
+        } else {
+          // No clipboard support available
+          showMessage('Clipboard not supported. Please copy manually: ' + shareUrl, 'info');
         }
         break;
     }
@@ -599,10 +602,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="social-share-container">
         <span class="social-share-label">Share:</span>
         <button class="social-share-button twitter" data-platform="twitter" data-activity="${name}" title="Share on Twitter">
-          𝕏
+          X
         </button>
         <button class="social-share-button facebook" data-platform="facebook" data-activity="${name}" title="Share on Facebook">
-          f
+          ƒ
         </button>
         <button class="social-share-button linkedin" data-platform="linkedin" data-activity="${name}" title="Share on LinkedIn">
           in
