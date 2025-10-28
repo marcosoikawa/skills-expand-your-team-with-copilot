@@ -663,6 +663,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Add event listeners for difficulty filter buttons
+  // "No Filter" (empty string): Shows all activities regardless of difficulty
+  // "Beginner", "Intermediate", "Advanced": Shows only activities with that specific difficulty level
+  // "All Levels" (value "all"): Shows only activities with NO difficulty specified (suitable for all skill levels)
   difficultyFilters.forEach((button) => {
     button.addEventListener("click", () => {
       // Update active class
